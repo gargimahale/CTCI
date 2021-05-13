@@ -1,6 +1,6 @@
-## My Version of CTCI Solutions in Cpp:-
+## My version of CTCI Solutions in C++
 
-### Topics Covered, <br>
+### Topics Covered:- <br>
 
 1. Arrays and Strings
 2. Linked Lists
