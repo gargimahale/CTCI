@@ -21,6 +21,7 @@ void display(ListNode* head) {
 }
 
 // TC: O(N), SC: O(1)
+
 ListNode* kthToLast(ListNode* head, int k) {
 	ListNode* p1 = head, *p2 = head;
 	for (int i = 0; i < k; ++i) {
