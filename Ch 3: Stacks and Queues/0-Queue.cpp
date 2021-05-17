@@ -47,16 +47,14 @@ int deQueue(Queue* Q) {
 }
 
 int front(Queue* Q) {
-    if (isEmpty(Q)) {
+    if (isEmpty(Q)) 
         return INT_MIN;
-    }
     return Q->arr[Q->front];
 }
 
 int rear(Queue* Q) {
-    if (isEmpty(Q)) {
+    if (isEmpty(Q))
         return INT_MIN;
-    }
     return Q->arr[Q->back];
 }
 
