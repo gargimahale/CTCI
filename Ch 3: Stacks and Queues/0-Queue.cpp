@@ -40,6 +40,7 @@ void enQueue(Queue* Q, int x) {
 int deQueue(Queue* Q) {
     if (isEmpty(Q))
         return INT_MIN;
+        
     int x = Q->arr[Q->front];
     Q->front = (Q->front + 1) % Q->cap;
     Q->size = Q->size - 1;
