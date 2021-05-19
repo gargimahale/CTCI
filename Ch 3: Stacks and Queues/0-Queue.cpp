@@ -31,6 +31,7 @@ void enQueue(Queue* Q, int x) {
         cout << "Queue Full\n";
         return;
     }
+    
     Q->back = (Q->back + 1) % Q->cap;
     Q->arr[Q->back] = x;
     Q->size = Q->size + 1;
@@ -40,7 +41,7 @@ void enQueue(Queue* Q, int x) {
 int deQueue(Queue* Q) {
     if (isEmpty(Q))
         return INT_MIN;
-        
+
     int x = Q->arr[Q->front];
     Q->front = (Q->front + 1) % Q->cap;
     Q->size = Q->size - 1;
