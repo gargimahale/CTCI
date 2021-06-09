@@ -10,10 +10,10 @@ assume the string has only uppercase and lowercase letters (a - z).
 
 string stringCompressor(string s1) {
     string cpy = "";
-    int i = 0;
-    while (i < s1.size()) {
+    int i = 0, n = s1.size();
+    while (i < n) {
         int j = i;
-        while (j < s1.size() && s1[i] == s1[j]) {
+        while (j < n && s1[i] == s1[j]) {
             ++j;
         }
         cpy += s1[i];
@@ -25,14 +25,16 @@ string stringCompressor(string s1) {
         }
         i = j;
     }
-    // cout << cpy;
-    return cpy.size() < s1.size() ? cpy : s1;
+
+    return cpy.size() > n ? s1 : cpy;
 }
 
 int main() {
     string s1 = "aabcccccaaa";
+    cout << 25 + '0' << "\n";
     cout << stringCompressor(s1) << "\n";
     return 0;
 }
 
-// TC: O(n), SC: O(n)
+// TC: O(n)
+// SC: O(n)
