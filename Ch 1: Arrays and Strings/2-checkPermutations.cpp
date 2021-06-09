@@ -3,7 +3,7 @@ using namespace std;
 
 // Ask regarding whitespace and case sensitivity
 
-/* 
+/*
 Q. Given two strings, write a method to decide if one is a permutation of the other.
 */
 

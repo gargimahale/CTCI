@@ -25,17 +25,19 @@ bool isUnique(string& str) {
 
 // OR
 
-// Further reduces space usage
-// bool isUnique(string& str) {
-//     int checker = 0;
-//     for (int i = 0; i < str.size(); ++i) {
-//         int val = str[i] - 'a';
-//         if ((checker & (1 << val)) > 0) return false;
-//         checker |= (1 << val);
-//     }
-//     return true;
-// }
+// Reduces space usage but in worst case gives a complexity of O(n^2)
 
+bool isUnique(string& str) {
+    int n = str.size(), checker = 0;
+    for (int i = 0; i < n; ++i) {
+        int val = str[i] - 'a';
+        if ((checker & (1 << val)) > 0) {
+            return false;
+        }
+        checker |= (1 << val);
+    }
+    return true;
+}
 
 int main() {
     string s;
