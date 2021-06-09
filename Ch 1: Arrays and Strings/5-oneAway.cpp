@@ -15,9 +15,7 @@ bool oneEditAway(string& s1, string& s2) {
 
     // Get Shorter string
     if (b < a) {
-        string temp = s1;
-        s1 = s2;
-        s2 = s1;
+        swap(s1, s2);
     }
 
     int idx1 = 0, idx2 = 0;
