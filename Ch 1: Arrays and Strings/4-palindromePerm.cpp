@@ -35,6 +35,7 @@ int main() {
 	cout << checkPalindromePerm(str) << "\n";
 	return 0;
 }
-s
-// TC: O(N), SC: O(128) -> O(1)
+
+// TC: O(N), SC: O(128) -> O(c)
 // Where N is the length of the string
+// Where c is the character set
