@@ -67,4 +67,4 @@ int main() {
     return 0;
 }
 
-// TC: O(row*col), SC: O(1)
+// TC: O(N*M), SC: O(1)
