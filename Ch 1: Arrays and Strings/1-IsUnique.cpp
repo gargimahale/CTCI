@@ -28,13 +28,13 @@ bool isUnique(string& str) {
 // Reduces space usage but in worst case gives a complexity of O(n^2)
 
 bool isUnique(string& str) {
-    int n = str.size(), checker = 0;
+    int n = str.size(), check = 0;
     for (int i = 0; i < n; ++i) {
         int val = str[i] - 'a';
-        if ((checker & (1 << val)) > 0) {
+        if ((check & (1 << val))) {
             return false;
         }
-        checker |= (1 << val);
+        check |= (1 << val);
     }
     return true;
 }
