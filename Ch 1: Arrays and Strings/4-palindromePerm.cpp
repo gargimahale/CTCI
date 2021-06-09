@@ -31,7 +31,7 @@ bool checkPalindromePerm(string& str) {
 }
 
 int main() {
-	string str = "Tacot Cao";
+	string str = "Tact Coa";
 	cout << checkPalindromePerm(str) << "\n";
 	return 0;
 }

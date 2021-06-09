@@ -6,55 +6,52 @@ Q. Write a method to replace all spaces in a string with '%20'. You may assume t
 has sufficient space at the end to hold the additional characters, and that you are given the
 "true" length of the string. (Note: if implementing in Java, please use a character array so
 that you can perform this operation in place.)
+
 */
 
-void urlify(string& input, int trueLength) {
-    string rep = "%20";
-    int i;
-    auto it = prev(input.end());
-    while (*it == ' ') {
-        input.erase(it);
-        --it;
+void urlify(char *inp, int trueLen) {
+    int num_spaces = 0;
+    int first_space_idx = -1;
+    bool checkAlpha = false;
+
+    for (int i = 0; i < trueLen; ++i) {
+        if (inp[i] == ' ') {
+            if (num_spaces == 0) {
+                first_space_idx = i;
+            }
+            ++num_spaces;
+        }
+        if (isalpha(inp[i])) {
+            checkAlpha = true;
+        }
     }
-    for (i = 0 ; i < input.length() ; i++) {
-        if (input[i] == ' ')
-            input.replace(i, 1, rep);
+
+    // strings with spaces
+    if (num_spaces == 0 || !checkAlpha) return;
+
+    for (int i = trueLen - 1; i > first_space_idx; --i) {
+        if (inp[i] == ' ') {
+            --num_spaces;
+            continue;
+        }
+        inp[i + 2 * num_spaces] = inp[i];
+        inp[i] = ' ';
     }
-    cout << input;
+
+    for (int i = 0; i < trueLen; ++i) {
+        if (inp[i] == ' ') {
+            inp[i] = '%';
+            inp[i + 1] = '2';
+            inp[i + 2] = '0';
+        }
+    }
+    // return inp;
 }
 
-// OR
-
-// void urlify(char *inp, int trueLen) {
-
-//     int spaces = 0, i;
-
-//     // Count number of spaces from the true length of the string
-//     for (i = 0; i < trueLen; ++i) {
-//         spaces += (inp[i] == ' ');
-//     }
-
-//     // Find the length of the new string
-//     int idx = trueLen + spaces * 2 - 1;
-
-//     // Replace the original string
-//     for (int j = trueLen - 1; j >= 0; --j) {
-//         if (inp[j] == ' ') {
-//             inp[idx--] = '0';
-//             inp[idx--] = '2';
-//             inp[idx--] = '%';
-//         }
-//         else {
-//             inp[idx--] = inp[j];
-//         }
-//     }
-//     cout << inp << "\n";
-// }
-
 int main() {
-    // char str[] = "Mr John Smith   ";
-    string str = "Mr John Smith   ";
+    char str[] = "Mr John Smith   ";
     urlify(str, 13);
+    cout << str << "\n";
     return 0;
 }
 

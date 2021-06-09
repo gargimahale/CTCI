@@ -4,32 +4,42 @@ using namespace std;
 // Ask regarding whitespace and case sensitivity
 
 /*
-Q. Given two strings, write a method to decide if one is a permutation of the other.
+Q. Given two strings, write a method to decide if one is a permutation
+of the other.
+
 */
 
-bool isPermutation(string& a, string& b) {
+class Solution {
+public:
+    bool isPermutation(string& a, string& b) {
+        int sizeA = a.size(), sizeB = b.size();
+        if (sizeA != sizeB) return false;
 
-    if (a.size() != b.size()) return false;
+        vector<int> letters(128);
 
-    vector<int> letters(128);
+        // O(a)
+        for (int i = 0; i < sizeA; ++i) {
+            letters[a[i] - 'a']++;
+            letters[b[i] - 'a']--;
+        }
 
-    for (int i = 0; i < a.size(); ++i) {
-        letters[a[i] - 'a']++;
-        letters[b[i] - 'a']--;
+        // O(1)
+        for (int i = 0; i < 128; ++i) {
+            if (letters[i] < 0) return false;
+        }
+        return true;
     }
-
-    for (int i = 0; i < 128; ++i) {
-        if (letters[i] < 0) return false;
-    }
-    return true;
-}
+};
 
 
 int main() {
+    Solution sol;
     string a, b;
     cin >> a >> b;
-    cout << isPermutation(a, b) << "\n";
+    cout << sol.isPermutation(a, b) << "\n";
     return 0;
 }
 
-// TC: O(max(a, b)), SC: O(1)
+// TC: O(a), SC: O(c)
+// Where c is the character set
+// Where a is the length of the original string
