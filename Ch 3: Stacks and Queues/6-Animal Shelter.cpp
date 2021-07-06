@@ -63,7 +63,6 @@ public:
         int tmp = cat.front();
         cat.pop();
         return tmp;
-
     }
 };
 
