@@ -7,36 +7,32 @@ remove a character, or replace a character. Given two strings, write a function 
 check if they are one edit (or zero edits) away.
 */
 
-bool oneEditAway(string& s1, string& s2) {
-    int a = s1.length(), b = s2.length();
+bool isOneEditDistance(string s, string t) {
+    int a = s.size(), b = t.size();
+    if ((a == 0 && b == 0) || abs(a - b) > 1) return false;
 
-    // can't be more than one edit
-    if (abs(a - b) > 1) return false;
+    if (b < a) swap(s, t);
 
-    // Get Shorter string
-    if (b < a) {
-        swap(s1, s2);
-    }
-
-    int idx1 = 0, idx2 = 0;
+    int i = 0, j = 0;
     bool foundDiff = false;
 
-    while (idx1 < s1.size() && idx2 < s2.size()) {
-        if (s1[idx1] != s2[idx2]) {
+    while (i < s.size() && j < t.size()) {
+        if (s[i] != t[j]) {
 
-            // checks if one edit has already been encountered
             if (foundDiff) return false;
             foundDiff = true;
 
-            // Move short pointer after one replace
-            if (a == b) ++idx1;
+            if (s.size() == t.size()) {
+                // replace
+                ++i;
+            }
         }
         else {
-            ++idx1;
+            ++i;
         }
-        ++idx2;
+        ++j;
     }
-    return true;
+    return (foundDiff == false && a == b) ? false : true;
 }
 
 int main() {

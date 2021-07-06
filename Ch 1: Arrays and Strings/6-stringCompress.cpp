@@ -31,7 +31,6 @@ string stringCompressor(string s1) {
 
 int main() {
     string s1 = "aabcccccaaa";
-    cout << 25 + '0' << "\n";
     cout << stringCompressor(s1) << "\n";
     return 0;
 }

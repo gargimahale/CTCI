@@ -56,7 +56,6 @@ int main() {
 	int k;
 	cin >> k;
 	head = deleteNode(head, k);
-
 	cout << "Updated LinkedList After Deletion:" << "\n";
 	display(head);
 	return 0;
