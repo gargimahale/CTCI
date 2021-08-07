@@ -5,10 +5,7 @@ class Node {
 public:
 	int val;
 	Node* next;
-	Node(int _val) {
-		val = _val;
-		next = NULL;
-	}
+	Node(int _val): val(_val), next(nullptr) {}
 };
 
 void display(Node* head) {
