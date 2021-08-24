@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
 using namespace std;
 
 /*
@@ -38,7 +39,7 @@ bool isOneEditDistance(string s, string t) {
 int main() {
     string s1 = "rocky";
     string s2 = "rock";
-    cout << oneEditAway(s1, s2) << "\n";
+    cout << isOneEditDistance(s1, s2) << "\n";
     return 0;
 }
 

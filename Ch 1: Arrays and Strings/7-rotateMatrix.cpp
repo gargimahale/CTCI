@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
 using namespace std;
 
 /*
@@ -8,7 +10,7 @@ by 90 degrees. Can you do this in place?
 */
 
 bool isRotation(vector<vector<int>>& mat) {
-    int r = mat.size(), col = mat[0].size();
+    int row = mat.size(), col = mat[0].size();
     if (row == 0 || row != col) return false;
 
     reverse(mat.begin(), mat.end());

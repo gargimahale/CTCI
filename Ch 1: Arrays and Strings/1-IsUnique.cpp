@@ -1,4 +1,3 @@
-// #include <bits/stdc++.h>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -17,6 +16,7 @@ What if you cannot use additional data structures?
 class Solution{
 public:
     bool isUnique(string& str) {
+        // if exceeds ASCII charset count, its guaranteed to be false
         if (str.size() > 128) return false;
 
         vector<bool> check(128, false);
@@ -30,9 +30,9 @@ public:
     // Reduces space usage but in worst case gives a complexity of O(n^2)
     bool isUnique_2(string& str) {
         int n = str.size(), check = 0;
-        for (int i = 0; i < n; ++i) {
-            int val = str[i] - 'a';
-            if ((check & (1 << val))) {
+        for (char& ch: str){
+            int val = ch - 'a';
+            if ((check & (1 << val)) > 0){
                 return false;
             }
             check |= (1 << val);
