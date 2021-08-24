@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 class Node {
@@ -8,52 +8,76 @@ public:
 	Node(int _val): val(_val), next(nullptr) {}
 };
 
-void display(Node* head) {
-	if (!head) return;
-	Node* temp = head;
-	while (temp->next) {
-		cout << temp->next->val << " ";
-		temp = temp->next;
+class LinkedList{
+	Node* head;
+public:
+	LinkedList(){
+		head = nullptr;
 	}
-	cout << "\n";
-}
 
-Node* deleteNode(Node* head, int ele) {
-	if (!head) return head;
-	Node* temp = head;
-	while (temp->next) {
-		if (temp->next->val == ele) {
-			Node* curr = temp->next;
-			temp->next = temp->next->next;
+	void prependNode(int ele){
+		Node* newHead = new Node(ele);
+		newHead->next = head;
+		head = newHead;
+	}
 
-			// frees memory
-			delete(curr);
+	void appendNode(int ele){
+		if (!head){
+			head = new Node(ele);;
+			return;
 		}
-		else {
+		Node* current = head;
+		while(current->next){
+			current = current->next;
+		}
+		current->next = new Node(ele);
+	}
+
+	void display() {
+		if (!head) {
+			cout << "Linked List Empty\n";
+			return;
+		}
+		Node* temp = head;
+		while (temp) {
+			cout << temp->val << "->";
 			temp = temp->next;
 		}
+		cout << "NULL\n";
 	}
-	return head;
-}
+
+	void deleteNode(int ele) {
+		if (!head) return;
+
+		if (ele == head->val){
+			Node* temp = head;
+			head = head->next;
+			delete temp;
+			return;
+		}
+
+		Node* temp = head;
+		while (temp->next) {
+			if (temp->next->val == ele) {
+				Node* curr = temp->next;
+				temp->next = temp->next->next;
+
+				// frees memory
+				delete(curr);
+			}
+			else {
+				temp = temp->next;
+			}
+		}
+	}
+};
 
 int main() {
-	Node* head = new Node(0);
-	Node* curr = head;
-	int n;
-	cin >> n;
-	for (int i = 0; i < n; ++i) {
-		int temp;
-		cin >> temp;
-
-		// apppends to tail
-		curr->next = new Node(temp);
-		curr = curr->next;
-	}
-	display(head);
-	int k;
-	cin >> k;
-	head = deleteNode(head, k);
-	cout << "Updated LinkedList After Deletion:" << "\n";
-	display(head);
-	return 0;
+	LinkedList ll;
+	ll.prependNode(2);
+	ll.appendNode(5);
+	ll.appendNode(10);
+	ll.prependNode(3);
+	ll.deleteNode(3);
+	ll.display();
 }
