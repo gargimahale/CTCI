@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 class ListNode {
@@ -54,8 +54,8 @@ void deleteDuplicates_withoutBuffer(ListNode* head) {
 void display(ListNode* head) {
     if (!head) return;
     ListNode* curr = head;
-    while (curr->next) {
-        cout << curr->next->val << " ";
+    while (curr) {
+        cout << curr->val << "->";
         curr = curr->next;
     }
     cout << "\n";

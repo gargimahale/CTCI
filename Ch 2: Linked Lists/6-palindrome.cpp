@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 class ListNode {
@@ -11,6 +11,17 @@ public:
     }
 };
 
+ListNode* reverseLL(ListNode* head){
+    ListNode* prev = nullptr;
+    while(head){
+        ListNode* temp = head->next;
+        head->next = prev;
+        prev = head;
+        head = temp;
+    }
+    return prev;
+}
+
 void display(ListNode* head) {
     if (!head) return;
     while (head) {
@@ -21,18 +32,44 @@ void display(ListNode* head) {
 }
 
 bool palindrome(ListNode* head) {
-    stack<ListNode*> stk;
-    ListNode* temp = head;
-    while (temp) {
-        stk.push(temp);
-        temp = temp->next;
+    // stack<ListNode*> stk;
+    // ListNode* temp = head;
+    // while (temp) {
+    //     stk.push(temp);
+    //     temp = temp->next;
+    // }
+    // while (head) {
+    //     if (stk.top()->val != head->val) {
+    //         return false;
+    //     }
+    //     stk.pop();
+    //     head = head->next;
+    // }
+    // return true;
+    
+    // OR
+    if (!head){
+        return false;
     }
-    while (head) {
-        if (stk.top()->val != head->val) {
+
+    ListNode* slow = head, *fast = head;
+    while(fast && fast->next){
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    if (fast){
+        slow = slow->next;
+    }
+    slow = reverseLL(slow);
+
+    fast = head;
+    while(fast && slow){
+        if (fast->val != slow->val){
             return false;
         }
-        stk.pop();
-        head = head->next;
+        fast = fast->next;
+        slow = slow->next;
     }
     return true;
 }
