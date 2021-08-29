@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <chrono>
+#include <random>
 using namespace std;
 
 // delete and random node
@@ -81,18 +83,23 @@ public:
 		}
 		return root;
 	}
+
+	// TreeNode* getRandomNode(int val){
+
+	// }
 };
     
 int main(void){
 	Tree t;
 	TreeNode* root = nullptr;
-	int n;
-	cin >> n;
-	for (int i = 0; i<n; ++i){
-		int data;
+	int nodes, n, data;
+	cin >> nodes;
+	for (int i = 0; i < nodes; ++i){
 		cin >> data;
 		root = t.insertIntoBST(root, data);
 	}
+
+	
 	cout << "before deletion\n";
 	t.dfs(root);
 	cout << "\n";
@@ -100,4 +107,5 @@ int main(void){
 	root = t.deleteFromBST(root, n);
 	cout << "after deletion\n";
 	t.dfs(root);
+	// cout << t.getRandomNode();
 }
